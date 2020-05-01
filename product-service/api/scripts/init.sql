@@ -35,7 +35,7 @@ CREATE TABLE `intropage` (
   `update_time` datetime DEFAULT NULL,
    PRIMARY KEY (`page_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO `intropage` VALUES ('intro', 'this is page title', 'http://www.baidu.com', '[\" <div>第一段  文字</div> \",\"<html> <p>第二段文字</p></html> \"]', '  [\"http://www.baidu.com\",\"https://www.cnblogs.com\"]', '\0', '2020-03-05 12:07:18', '2020-03-05 12:07:18');
+INSERT INTO `BoatHouse`.`intropage`(`page_id`, `page_title`, `page_api_url`, `text`, `image`, `deleted`, `create_time`, `update_time`) VALUES ('intro', 'BoatHouse Story', '', '<p>This is boat house story.</p >', '', b'0', NULL, '2020-04-11 12:09:57');
 
 DROP TABLE IF EXISTS user;
 CREATE TABLE user
@@ -47,6 +47,12 @@ CREATE TABLE user
     email VARCHAR(50) NULL DEFAULT NULL COMMENT '邮箱',
     PRIMARY KEY (id)
 );
+ALTER TABLE `BoatHouse`.`user` 
+ADD UNIQUE INDEX `account_UNIQUE` (`account` ASC);
+INSERT INTO `user` (`id`,`account`,`password`,`age`,`email`) VALUES (1,'admin','96e79218965eb72c92a549dd5a330112',NULL,NULL);
+INSERT INTO `user` (`id`,`account`,`password`,`age`,`email`) VALUES (2,'test','96e79218965eb72c92a549dd5a330112',NULL,NULL);
+INSERT INTO `user` (`id`,`account`,`password`,`age`,`email`) VALUES (3,'test2','96e79218965eb72c92a549dd5a330112',NULL,NULL);
+
 DROP TABLE IF EXISTS shop_cart;
 CREATE TABLE shop_cart (
     `id` VARCHAR(100) NOT NULL,
